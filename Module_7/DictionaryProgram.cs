@@ -17,6 +17,7 @@ class Program
             Console.WriteLine("2. Display Dictionary Contents");
             Console.WriteLine("3. Remove a Key");
             Console.WriteLine("5. Add a Value to an Existing Key");
+            Console.WriteLine("6. Sort the Keys");
             Console.Write("Choose an option: ");
 
             // Save the option selected by the user
@@ -122,6 +123,18 @@ class Program
                     else
                     {
                         Console.WriteLine("Key was not found.");
+                    }
+                    break;
+
+                case "6":
+                    // Create a list of the dictionary keys and sort them
+                    List<string> sortedKeys = new List<string>(minecraftItems.Keys);
+                    sortedKeys.Sort();
+
+                    // Display the sorted keys along with their values
+                    foreach (string sortedKey in sortedKeys)
+                    {
+                        Console.WriteLine(sortedKey + " - " + minecraftItems[sortedKey]);
                     }
                     break;
 

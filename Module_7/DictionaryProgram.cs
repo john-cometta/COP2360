@@ -16,6 +16,7 @@ class Program
             Console.WriteLine("1. Populate Dictionary");
             Console.WriteLine("2. Display Dictionary Contents");
             Console.WriteLine("3. Remove a Key");
+            Console.WriteLine("4. Add a New Key and Value");
             Console.WriteLine("5. Add a Value to an Existing Key");
             Console.WriteLine("6. Sort the Keys");
             Console.Write("Choose an option: ");
@@ -93,6 +94,29 @@ class Program
                     else
                     {
                         Console.WriteLine(inputKey + " was not found.");
+                    }
+                    break;
+
+                case "4":
+                    // Ask the user for the new key they want to add
+                    Console.Write("Enter the new key you want to add: ");
+                    string newKey = Console.ReadLine().Trim();
+
+                    // Check if the key already exists before adding it
+                    if (minecraftItems.ContainsKey(newKey))
+                    {
+                        Console.WriteLine("Error: The key '" + newKey + "' already exists in the dictionary.");
+                    }
+                    else
+                    {
+                        // Ask for the value that will go with the new key
+                        Console.Write("Enter the value for '" + newKey + "': ");
+                        string newItemValue = Console.ReadLine();
+
+                        // Add the new key and value to the dictionary
+                        minecraftItems.Add(newKey, newItemValue);
+
+                        Console.WriteLine("Success! Added '" + newKey + "' - '" + newItemValue + "' to the dictionary.");
                     }
                     break;
 

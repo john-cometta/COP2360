@@ -75,7 +75,7 @@ class Program
 
                     bool removed = false;
 
-                    // Search for the key without requiring the exact capitalization
+                    // Search for the key without requiring exact capitalization
                     foreach (var existingKey in new List<string>(minecraftItems.Keys))
                     {
                         if (existingKey.Equals(inputKey, StringComparison.OrdinalIgnoreCase))
@@ -102,8 +102,19 @@ class Program
                     Console.Write("Enter the new key you want to add: ");
                     string newKey = Console.ReadLine().Trim();
 
-                    // Check if the key already exists before adding it
-                    if (minecraftItems.ContainsKey(newKey))
+                    bool keyExists = false;
+
+                    // Check if the key already exists without requiring exact capitalization
+                    foreach (string existingKey in minecraftItems.Keys)
+                    {
+                        if (existingKey.Equals(newKey, StringComparison.OrdinalIgnoreCase))
+                        {
+                            keyExists = true;
+                            break;
+                        }
+                    }
+
+                    if (keyExists)
                     {
                         Console.WriteLine("Error: The key '" + newKey + "' already exists in the dictionary.");
                     }
@@ -132,17 +143,28 @@ class Program
                     Console.Write("Enter the existing key: ");
                     string key = Console.ReadLine().Trim();
 
-                    // Check if the key exists before adding another value
-                    if (minecraftItems.ContainsKey(key))
+                    string foundKey = null;
+
+                    // Find the key without requiring exact capitalization
+                    foreach (string existingKey in minecraftItems.Keys)
+                    {
+                        if (existingKey.Equals(key, StringComparison.OrdinalIgnoreCase))
+                        {
+                            foundKey = existingKey;
+                            break;
+                        }
+                    }
+
+                    if (foundKey != null)
                     {
                         Console.Write("Enter the additional value: ");
                         string newValue = Console.ReadLine();
 
                         // Add the new value to the value that is already stored
-                        minecraftItems[key] += ", " + newValue;
+                        minecraftItems[foundKey] += ", " + newValue;
 
                         Console.WriteLine("Value added successfully!");
-                        Console.WriteLine(key + " - " + minecraftItems[key]);
+                        Console.WriteLine(foundKey + " - " + minecraftItems[foundKey]);
                     }
                     else
                     {
